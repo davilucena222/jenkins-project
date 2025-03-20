@@ -1,7 +1,6 @@
 pipeline {
-    agent any
+    agent
     stages {
-
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/davilucena222/jenkins-project.git', branch: 'main'
@@ -10,7 +9,7 @@ pipeline {
         }
         stage('Setup') {
             steps {
-                sh "pip install -r requirements.txt"
+                sh "pip3 install -r requirements.txt"
             }
         }
         stage('Test') {
