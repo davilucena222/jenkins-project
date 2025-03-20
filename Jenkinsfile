@@ -18,7 +18,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    sh "pytest test_app.py"
+                    sh 'export PATH=$HOME/.local/bin:$PATH && pytest test_app.py'
                 }
             }
         }
