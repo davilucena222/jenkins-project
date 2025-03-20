@@ -10,8 +10,8 @@ pipeline {
         }
         stage('Setup') {
             steps {
-                scripts {
-                    sh "apt-get update && apt-get install python3-pip"
+                script {
+                    sh "apt-get update && apt-get install -y python3-pip"
                     sh "pip3 install -r requirements.txt"
                 }
             }
