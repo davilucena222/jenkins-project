@@ -19,7 +19,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'export PATH=$HOME/.local/bin:$PATH && pytest test_app.py'
-                echo "The DB username is: ${USERNAME} and the password is: ${PASSWORD}"
+                echo "Commit: ${env.GIT_COMMIT}"
             }
         }
     }
