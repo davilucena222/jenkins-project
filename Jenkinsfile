@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-
+        
         stage('Setup') {
             
             steps {
@@ -12,6 +12,8 @@ pipeline {
                         echo ${mypassword}
                     '''
                 }
+
+                sh "pip install -r requirements.txt"
             }
         }
 
