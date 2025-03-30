@@ -5,7 +5,7 @@ pipeline {
         timeout(time: 1, unit: 'MINUTES')
     }
 
-    stage {
+    stages {
         stage('lint and format') {
             steps {
                 sh "sleep 70"
