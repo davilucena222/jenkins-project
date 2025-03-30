@@ -6,13 +6,13 @@ pipeline {
             parallel {
                 stage("linting") {
                     steps {
-                        echo "sleep 30"
+                        sh "sleep 30"
                     }
                 }
 
                 stage("formatting") {
                     steps {
-                        echo "sleep 30"
+                        sh "sleep 30"
                     }
                 }
             }
