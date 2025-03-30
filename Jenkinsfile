@@ -1,27 +1,36 @@
 pipeline {
     agent any
 
-    parameters {
-        string(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Specify the environment for deployment')
-        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run tests in pipeline')
-    }
-
     stages {
-        stage('test') {
-            when {
-                expression {
-                    params.RUN_TESTS == true
-                }
-            }
 
+        stage('Setup') {
+            
             steps {
-                echo "testing application"
+                withCredentials([usernamePassword(credentialsId: 'server-creds', usernameVariable: "myuser", passwordVariable: "mypassword")]) {
+                    sh '''
+                        echo ${myuser}
+                        echo ${mypassword}
+                    '''
+                }
+
+                sh "pip install --break-system-packages -r requirements.txt"
             }
         }
 
-        stage('Deploy') {
+        stage('Test') {
             steps {
-                echo "deploying to ${params.ENVIRONMENT} environment"
+                sh 'export PATH=$HOME/.local/bin:$PATH && pytest test_app.py'
+            }
+        }
+
+        stage('Deployment') {
+            input {
+                message "Do you want to proceeed further?"
+                ok "Yes"
+            }
+
+            steps {
+                echo 'Running Deployment'
             }
         }
     }
