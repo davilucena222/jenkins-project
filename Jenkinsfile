@@ -1,15 +1,29 @@
 pipeline {
-    agent any
+    agent any 
 
     stages {
+        stage("Lint and Format") {
+            stages {
+                stage("linting") {
+                    steps {
+                        echo "liting code in nested stage"
+                    }
+                }
+
+                stage("formatting") {
+                    steps {
+                        "formatting code in nested stage"
+                    }
+                }
+            }
+        }
 
         stage('Setup') {
-            
             steps {
                 withCredentials([usernamePassword(credentialsId: 'server-creds', usernameVariable: "myuser", passwordVariable: "mypassword")]) {
                     sh '''
-                    echo ${myuser}
-                    echo ${mypassword}
+                        echo ${myuser}
+                        echo ${mypassword}
                     '''
                 }
 
