@@ -12,7 +12,7 @@ pipeline {
 
                 stage("formatting") {
                     steps {
-                        "formatting code in nested stage"
+                        echo "formatting code in nested stage"
                     }
                 }
             }
