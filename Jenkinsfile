@@ -1,20 +1,14 @@
 pipeline {
-    agent any 
+    agent any
 
-    stages {
-        stage("Lint and Format") {
-            parallel {
-                stage("linting") {
-                    steps {
-                        sh "sleep 30"
-                    }
-                }
+    options {
+        timeout(time: 1, unit: 'MINUTES')
+    }
 
-                stage("formatting") {
-                    steps {
-                        sh "sleep 30"
-                    }
-                }
+    stage {
+        stage('lint and format') {
+            steps {
+                sh "sleep 70"
             }
         }
 
