@@ -3,16 +3,16 @@ pipeline {
 
     stages {
         stage("Lint and Format") {
-            stages {
+            parallel {
                 stage("linting") {
                     steps {
-                        echo "liting code in nested stage"
+                        echo "sleep 30"
                     }
                 }
 
                 stage("formatting") {
                     steps {
-                        echo "formatting code in nested stage"
+                        echo "sleep 30"
                     }
                 }
             }
